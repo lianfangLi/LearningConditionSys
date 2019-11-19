@@ -28,10 +28,12 @@ public class UserController {
     @CrossOrigin
     @ApiOperation("用户登录接口")
     @PostMapping("/userLogin")
-    public String login( @ApiParam(name = "user", value = "JSON的格式的用户信息") User user){
-        if(userService.login(user) !=null){
-            return SqlUtils.success;
+    public String login(@RequestBody @ApiParam(name = "user", value = "JSON的格式的用户信息") User user){
+        User query = userService.login(user);
+        if(query != null){
+           return SqlUtils.success;
         }
+       /* return SqlUtils.wrong;*/
         return SqlUtils.wrong;
     }
 
