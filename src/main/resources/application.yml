@@ -12,7 +12,6 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 20MB
-
 mybatis:
   typeAliasesPackage: com.example.lianfang.entity
   mapperLocations: classpath:mapper/*.xml

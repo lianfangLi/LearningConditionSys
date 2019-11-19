@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Api(description = "user相关接口 增删改操作均返回json格式的状态码 其他操作返回json的实体类")
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 @ComponentScan
@@ -21,20 +22,26 @@ public class UserController {
     @Autowired
     Status status;
 
+
+
+
+    @CrossOrigin
     @ApiOperation("用户登录接口")
     @PostMapping("/userLogin")
-    public String login(@RequestBody @ApiParam(name = "user", value = "JSON的格式的用户信息") User user){
+    public String login( @ApiParam(name = "user", value = "JSON的格式的用户信息") User user){
         if(userService.login(user) !=null){
             return SqlUtils.success;
         }
         return SqlUtils.wrong;
     }
+
+    @CrossOrigin
     @ApiOperation(value = "获取所有用户信息", notes = "这是接口")
     @GetMapping("/getUser")
     public String getUser(){
         List<User> users = userService.getAll();
 
-        return JSON.toJSONString(status);
+        return JSON.toJSONString(users);
     }
 
     /**
