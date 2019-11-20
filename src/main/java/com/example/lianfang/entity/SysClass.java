@@ -2,12 +2,17 @@ package com.example.lianfang.entity;
 
 import java.util.Date;
 
-public class Sys_class {
+public class SysClass {
     private String classNo;
+
     private String className;
+
     private Date year;
+
     private Integer number;
+
     private Integer dpId;
+
     private String teacherNo;
 
     public String getClassNo() {
@@ -15,7 +20,7 @@ public class Sys_class {
     }
 
     public void setClassNo(String classNo) {
-        this.classNo = classNo;
+        this.classNo = classNo == null ? null : classNo.trim();
     }
 
     public String getClassName() {
@@ -23,7 +28,7 @@ public class Sys_class {
     }
 
     public void setClassName(String className) {
-        this.className = className;
+        this.className = className == null ? null : className.trim();
     }
 
     public Date getYear() {
@@ -55,6 +60,6 @@ public class Sys_class {
     }
 
     public void setTeacherNo(String teacherNo) {
-        this.teacherNo = teacherNo;
+        this.teacherNo = teacherNo == null ? null : teacherNo.trim();
     }
 }

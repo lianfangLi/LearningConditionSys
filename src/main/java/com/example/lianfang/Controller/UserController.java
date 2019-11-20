@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.lianfang.entity.User;
 import com.example.lianfang.generalUtils.SqlUtils;
 import com.example.lianfang.generalUtils.Status;
+import com.example.lianfang.service.TeacherService;
 import com.example.lianfang.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,17 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @Autowired
-    Status status;
+    TeacherService teacherService;
 
-
+    /**
+     *
+     *
+     *  学生Service操作
+     * @param user
+     * @return
+     */
 
 
     @CrossOrigin
@@ -102,6 +110,14 @@ public class UserController {
 
             return SqlUtils.wrong;
     }
+
+    @ApiOperation(value = "查询用户角色接口",notes = "用户只能拥有一种角色 要么 老师 要么学生")
+    @PostMapping("/getUserRole")
+    public String getRole(@RequestParam  @ApiParam("用户id") String userId){
+
+            return null;
+    }
+
 
 
 

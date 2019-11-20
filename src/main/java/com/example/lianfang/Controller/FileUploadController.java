@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @Api(description = "文件上传接口 ")
 @RestController
 @RequestMapping("/FileUpload")
+@CrossOrigin
 public class FileUploadController {
 
     private final StorageService storageService;

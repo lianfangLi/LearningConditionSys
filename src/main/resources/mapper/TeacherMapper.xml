@@ -147,4 +147,9 @@
       dp_id = #{dpId,jdbcType=INTEGER}
     where teacher_id = #{teacherId,jdbcType=VARCHAR}
   </update>
+
+  <select id="getTeachersByDpId" resultType="com.example.lianfang.entity.Teacher" parameterType="Integer">
+    select <include refid="Base_Column_List" /> from teacher where dp_id = #{dpId};
+  </select>
+
 </mapper>

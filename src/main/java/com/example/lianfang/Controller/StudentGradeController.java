@@ -1,7 +1,6 @@
 package com.example.lianfang.Controller;
 
 import com.example.lianfang.entity.StudentCommonGrade;
-import com.example.lianfang.entity.Sys_class;
 import com.example.lianfang.entity.Teacher;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,11 +31,11 @@ public class StudentGradeController {
     public String deleteItems(@RequestBody @ApiParam List<StudentCommonGrade> studentCommonGrade){
         return null;
     }
-    @ApiOperation(value = "按照班级学生成绩删除接口（支持多个删除多个班级）",notes = "返回JSON串")
+   /* @ApiOperation(value = "按照班级学生成绩删除接口（支持多个删除多个班级）",notes = "返回JSON串")
     @PostMapping("/deleteGradeByClass")
     public String deleteByclass(@RequestBody @ApiParam List<Sys_class> Sys_class_list){
         return null;
-    }
+    }*/
 
 
 

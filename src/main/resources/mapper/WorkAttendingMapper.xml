@@ -6,9 +6,11 @@
     <id column="which_subject" property="whichSubject" jdbcType="VARCHAR" />
     <id column="which_time" property="whichTime" jdbcType="INTEGER" />
     <result column="is_attend" property="isAttend" jdbcType="CHAR" />
+    <result column="which_term" property="whichTerm" jdbcType="CHAR" />
+    <result column="which_year" property="whichYear" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, which_subject, which_time, is_attend
+    id, which_subject, which_time, is_attend, which_term, which_year
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.WorkAttendingKey" >
     select 
@@ -26,9 +28,11 @@
   </delete>
   <insert id="insert" parameterType="com.example.lianfang.entity.WorkAttending" >
     insert into work_attending (id, which_subject, which_time, 
-      is_attend)
+      is_attend, which_term, which_year
+      )
     values (#{id,jdbcType=VARCHAR}, #{whichSubject,jdbcType=VARCHAR}, #{whichTime,jdbcType=INTEGER}, 
-      #{isAttend,jdbcType=CHAR})
+      #{isAttend,jdbcType=CHAR}, #{whichTerm,jdbcType=CHAR}, #{whichYear,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.lianfang.entity.WorkAttending" >
     insert into work_attending
@@ -45,6 +49,12 @@
       <if test="isAttend != null" >
         is_attend,
       </if>
+      <if test="whichTerm != null" >
+        which_term,
+      </if>
+      <if test="whichYear != null" >
+        which_year,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -59,6 +69,12 @@
       <if test="isAttend != null" >
         #{isAttend,jdbcType=CHAR},
       </if>
+      <if test="whichTerm != null" >
+        #{whichTerm,jdbcType=CHAR},
+      </if>
+      <if test="whichYear != null" >
+        #{whichYear,jdbcType=CHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.WorkAttending" >
@@ -67,6 +83,12 @@
       <if test="isAttend != null" >
         is_attend = #{isAttend,jdbcType=CHAR},
       </if>
+      <if test="whichTerm != null" >
+        which_term = #{whichTerm,jdbcType=CHAR},
+      </if>
+      <if test="whichYear != null" >
+        which_year = #{whichYear,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
       and which_subject = #{whichSubject,jdbcType=VARCHAR}
@@ -74,7 +96,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.WorkAttending" >
     update work_attending
-    set is_attend = #{isAttend,jdbcType=CHAR}
+    set is_attend = #{isAttend,jdbcType=CHAR},
+      which_term = #{whichTerm,jdbcType=CHAR},
+      which_year = #{whichYear,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
       and which_subject = #{whichSubject,jdbcType=VARCHAR}
       and which_time = #{whichTime,jdbcType=INTEGER}

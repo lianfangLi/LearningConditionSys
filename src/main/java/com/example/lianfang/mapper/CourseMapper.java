@@ -5,6 +5,15 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface CourseMapper {
-    Integer addCourse(Course course);
+    int deleteByPrimaryKey(String courNo);
 
+    int insert(Course record);
+
+    int insertSelective(Course record);
+
+    Course selectByPrimaryKey(String courNo);
+
+    int updateByPrimaryKeySelective(Course record);
+
+    int updateByPrimaryKey(Course record);
 }

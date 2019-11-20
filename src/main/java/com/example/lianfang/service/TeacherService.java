@@ -1,12 +1,10 @@
-package com.example.lianfang.mapper;
+package com.example.lianfang.service;
 
 import com.example.lianfang.entity.Teacher;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface TeacherMapper {
+public interface TeacherService {
     int deleteByPrimaryKey(String teacherId);
 
     int insert(Teacher record);   // 教师信息插入

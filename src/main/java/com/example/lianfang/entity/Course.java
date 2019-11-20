@@ -3,15 +3,15 @@ package com.example.lianfang.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel
+@ApiModel(value = "课程类",description = "该类中courNo必填 其他属性可选填，学期，学分属性为数值型 其他都为字符型")
 public class Course {
-    @ApiModelProperty(name = "课程编号", value = "courNo", example = "1")
+    @ApiModelProperty(name = "courNo", required = true, example = "1")
     private String courNo;
-    @ApiModelProperty(name = "课程名称", value = "courName", example =" 计算机网络")
+    @ApiModelProperty(name = "courName", required = false, example = "高等数学")
     private String courName;
-    @ApiModelProperty(name = "课程学分", value = "credit",example = "4")
+    @ApiModelProperty(name = "credit", required = false, example = "4")
     private Float credit;
-    @ApiModelProperty(name = "课程时长", value = "period", example ="64")
+    @ApiModelProperty(name = "period", value ="学期号", required = false, example = "1")
     private Integer period;
 
     public String getCourNo() {
@@ -19,7 +19,7 @@ public class Course {
     }
 
     public void setCourNo(String courNo) {
-        this.courNo = courNo;
+        this.courNo = courNo == null ? null : courNo.trim();
     }
 
     public String getCourName() {
@@ -27,7 +27,7 @@ public class Course {
     }
 
     public void setCourName(String courName) {
-        this.courName = courName;
+        this.courName = courName == null ? null : courName.trim();
     }
 
     public Float getCredit() {

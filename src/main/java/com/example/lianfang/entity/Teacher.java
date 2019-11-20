@@ -4,16 +4,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
-@ApiModel
+@ApiModel()
 public class Teacher {
-    @ApiModelProperty(name ="教师编号", value = "teacherId" ,example = "17111")
+    @ApiModelProperty(name ="教师编号", value = "" ,example = "17111")
     private String teacherId;
     @ApiModelProperty(name ="教师姓名", value = "teacherName" ,example = "马")
     private String teacherName;
 
     @ApiModelProperty(name ="性别", value = "sex" ,example = "男")
     private String sex;
-    @ApiModelProperty(name ="教师出生日期", value = "birth" ,example = "2019-12-22")
+    @ApiModelProperty(name ="教师出生日期 格式固定", value = "birth" ,example = "2019-12-22")
     private Date birth;
     @ApiModelProperty(name ="教师年龄", value = "age" ,example = "56")
     private Integer age;
