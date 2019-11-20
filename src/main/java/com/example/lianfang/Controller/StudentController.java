@@ -26,7 +26,7 @@ public class StudentController {
     @ApiOperation(value = "学生修改接口",notes = "修改时除id属性，其他属性选填")
     @PostMapping("/studentModify")
     public String modify(@RequestBody Student student){
-        if(studentService.selectByPrimaryKey(student.getId()) != null || studentService.insertSelective(student) == 0 ) return SqlUtils.wrong;
+        if(studentService.selectByPrimaryKey(student.getId()) != null || studentService.updateByPrimaryKeySelective(student) == 0 ) return SqlUtils.wrong;
         return SqlUtils.success;
     }
 
