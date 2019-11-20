@@ -1,24 +1,36 @@
 package com.example.lianfang.entity;
 
-import java.util.Date;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Date;
+@ApiModel(value = "学生实体类")
 public class Student {
+    @ApiModelProperty(name ="id", example = "123")
     private String id;
 
+    @ApiModelProperty(name ="sdName", example = "James")
     private String sdName;
 
+    @ApiModelProperty(name ="sex", example = "男")
     private String sex;
 
+    @ApiModelProperty(name ="birth", example = "2019-11-18")
     private Date birth;
 
+    @ApiModelProperty(name ="age",example = "19")
     private Integer age;
-
+    @ApiModelProperty(name ="contact", example = "16688882222")
     private String contact;
 
+    @ApiModelProperty(name ="email", example = "123@163.com")
     private String email;
 
+    @ApiModelProperty(name ="mood", example = "Holy!")
     private String mood;
 
+    @ApiModelProperty(name ="classNo", example = "12")
     private String classNo;
 
     public String getId() {

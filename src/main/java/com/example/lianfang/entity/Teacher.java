@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 @ApiModel()
 public class Teacher {
-    @ApiModelProperty(name ="教师编号", value = "" ,example = "17111")
+    @ApiModelProperty(name ="教师编号", value = "teachId" ,example = "17111")
     private String teacherId;
     @ApiModelProperty(name ="教师姓名", value = "teacherName" ,example = "马")
     private String teacherName;
