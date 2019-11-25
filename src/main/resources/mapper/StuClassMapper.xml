@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.lianfang.mapper.SysClassMapper" >
-  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.SysClass" >
+<mapper namespace="com.example.lianfang.mapper.StuClassMapper" >
+
+  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.StuClass" >
     <id column="class_no" property="classNo" jdbcType="VARCHAR" />
     <result column="class_name" property="className" jdbcType="VARCHAR" />
     <result column="year" property="year" jdbcType="TIMESTAMP" />
@@ -9,35 +10,7 @@
     <result column="dp_id" property="dpId" jdbcType="INTEGER" />
     <result column="teacher_no" property="teacherNo" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
+
   <sql id="Base_Column_List" >
     class_no, class_name, year, number, dp_id, teacher_no
   </sql>
@@ -51,7 +24,7 @@
     delete from class
     where class_no = #{classNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.lianfang.entity.SysClass" >
+  <insert id="insert" parameterType="com.example.lianfang.entity.StuClass" >
     insert into class (class_no, class_name, year, 
       number, dp_id, teacher_no
       )
@@ -59,7 +32,7 @@
       #{number,jdbcType=INTEGER}, #{dpId,jdbcType=INTEGER}, #{teacherNo,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.lianfang.entity.SysClass" >
+  <insert id="insertSelective" parameterType="com.example.lianfang.entity.StuClass" >
     insert into class
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="classNo != null" >
@@ -102,45 +75,9 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update class
-    <set >
-      <if test="record.classNo != null" >
-        class_no = #{record.classNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.className != null" >
-        class_name = #{record.className,jdbcType=VARCHAR},
-      </if>
-      <if test="record.year != null" >
-        year = #{record.year,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.number != null" >
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.dpId != null" >
-        dp_id = #{record.dpId,jdbcType=INTEGER},
-      </if>
-      <if test="record.teacherNo != null" >
-        teacher_no = #{record.teacherNo,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update class
-    set class_no = #{record.classNo,jdbcType=VARCHAR},
-      class_name = #{record.className,jdbcType=VARCHAR},
-      year = #{record.year,jdbcType=TIMESTAMP},
-      number = #{record.number,jdbcType=INTEGER},
-      dp_id = #{record.dpId,jdbcType=INTEGER},
-      teacher_no = #{record.teacherNo,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.SysClass" >
+
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.StuClass" >
     update class
     <set >
       <if test="className != null" >
@@ -161,7 +98,7 @@
     </set>
     where class_no = #{classNo,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.SysClass" >
+  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.StuClass" >
     update class
     set class_name = #{className,jdbcType=VARCHAR},
       year = #{year,jdbcType=TIMESTAMP},

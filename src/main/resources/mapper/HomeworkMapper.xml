@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lianfang.mapper.HomeworkMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.Homework" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="which_subject" property="whichSubject" jdbcType="VARCHAR" />
+    <id column="which_time" property="whichTime" jdbcType="INTEGER" />
+    <result column="is_attend" property="isAttend" jdbcType="CHAR" />
+    <result column="which_term" property="whichTerm" jdbcType="CHAR" />
+    <result column="which_year" property="whichYear" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, which_subject, which_time, is_attend, which_term, which_year
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.HomeworkKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from homework
+    where id = #{id,jdbcType=VARCHAR}
+      and which_subject = #{whichSubject,jdbcType=VARCHAR}
+      and which_time = #{whichTime,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.lianfang.entity.HomeworkKey" >
+    delete from homework
+    where id = #{id,jdbcType=VARCHAR}
+      and which_subject = #{whichSubject,jdbcType=VARCHAR}
+      and which_time = #{whichTime,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.lianfang.entity.Homework" >
+    insert into homework (id, which_subject, which_time, 
+      is_attend, which_term, which_year
+      )
+    values (#{id,jdbcType=VARCHAR}, #{whichSubject,jdbcType=VARCHAR}, #{whichTime,jdbcType=INTEGER}, 
+      #{isAttend,jdbcType=CHAR}, #{whichTerm,jdbcType=CHAR}, #{whichYear,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lianfang.entity.Homework" >
+    insert into homework
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="whichSubject != null" >
+        which_subject,
+      </if>
+      <if test="whichTime != null" >
+        which_time,
+      </if>
+      <if test="isAttend != null" >
+        is_attend,
+      </if>
+      <if test="whichTerm != null" >
+        which_term,
+      </if>
+      <if test="whichYear != null" >
+        which_year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="whichSubject != null" >
+        #{whichSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="whichTime != null" >
+        #{whichTime,jdbcType=INTEGER},
+      </if>
+      <if test="isAttend != null" >
+        #{isAttend,jdbcType=CHAR},
+      </if>
+      <if test="whichTerm != null" >
+        #{whichTerm,jdbcType=CHAR},
+      </if>
+      <if test="whichYear != null" >
+        #{whichYear,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.Homework" >
+    update homework
+    <set >
+      <if test="isAttend != null" >
+        is_attend = #{isAttend,jdbcType=CHAR},
+      </if>
+      <if test="whichTerm != null" >
+        which_term = #{whichTerm,jdbcType=CHAR},
+      </if>
+      <if test="whichYear != null" >
+        which_year = #{whichYear,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+      and which_subject = #{whichSubject,jdbcType=VARCHAR}
+      and which_time = #{whichTime,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.Homework" >
+    update homework
+    set is_attend = #{isAttend,jdbcType=CHAR},
+      which_term = #{whichTerm,jdbcType=CHAR},
+      which_year = #{whichYear,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+      and which_subject = #{whichSubject,jdbcType=VARCHAR}
+      and which_time = #{whichTime,jdbcType=INTEGER}
+  </update>
+</mapper>

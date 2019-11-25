@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @ApiModel(value = "user实体",description = "用于用户操作相关")
 public class User {
 
-    @ApiModelProperty(value="用户id",name="id",example="jack")
+    @ApiModelProperty(value="用户id",name="id",example="16111")
     private String id;
     @ApiModelProperty(value="用户密码",name="pass",example="123")
     private String pass;
-    @ApiModelProperty(value="用户姓名",name="identity",example="张三")
+    @ApiModelProperty(value="用户姓名",name="identity",example="stu")
     private String identity;
 
 

@@ -1,6 +1,6 @@
 package com.example.lianfang.entity;
 
-public class WorkAttendingKey {
+public class HomeworkKey {
     private String id;
 
     private String whichSubject;

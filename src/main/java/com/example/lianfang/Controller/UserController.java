@@ -12,6 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
 @Api(description = "user相关接口 增删改操作均返回json格式的状态码 其他操作返回json的实体类")
 @CrossOrigin
 @RestController
@@ -36,12 +38,15 @@ public class UserController {
     @CrossOrigin
     @ApiOperation("用户登录接口")
     @PostMapping("/userLogin")
-    public String login(@RequestBody @ApiParam(name = "user", value = "JSON的格式的用户信息") User user){
+    public String login(@RequestBody @ApiParam(name = "user", value = "JSON的格式的用户信息 登陆成功 会返回一个identity的值") User user){
         User query = userService.login(user);
+        Map<String,String> map = SqlUtils.getMap();
         if(query != null){
-           return SqlUtils.success;
+            map.put("identity",query.getIdentity());
+           return JSON.toJSONString(map);
         }
        /* return SqlUtils.wrong;*/
+
         return SqlUtils.wrong;
     }
 
@@ -64,9 +69,7 @@ public class UserController {
      * @param id
      * @return
      */
-
     @ApiOperation("根据学号查询用户相关信息")
-
     @PostMapping("/getUserById")
     public String getUserById(@RequestParam(value = "id")  @ApiParam(name="id",value="用户id",required=true)String id){
         if(userService.getById(id) == null) return SqlUtils.wrong;
@@ -110,6 +113,9 @@ public class UserController {
 
             return SqlUtils.wrong;
     }
+
+
+
 
     @ApiOperation(value = "查询用户角色接口",notes = "用户只能拥有一种角色 要么 老师 要么学生")
     @PostMapping("/getUserRole")

@@ -7,7 +7,9 @@ public class SqlUtils {
     public static String success = "{\"status\":\"SUCCESS\"}";
     public static String wrong = "{\"status\":\"FAILURE\"}";
     public static Map getMap(){
-        return new HashMap<String,String>();
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("status","SUCCESS");
+        return map;
     }
 
 

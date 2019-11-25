@@ -1,6 +1,6 @@
 package com.example.lianfang.entity;
 
-public class WorkAttending extends WorkAttendingKey {
+public class Homework extends HomeworkKey {
     private String isAttend;
 
     private String whichTerm;

@@ -136,4 +136,9 @@
       class_no = #{classNo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByClassNo" resultType="com.example.lianfang.entity.Student">
+    select id,sd_name from student where class_no = #{classNo}
+  </select>
+
 </mapper>
