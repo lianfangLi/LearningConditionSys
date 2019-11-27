@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lianfang.mapper.TeacherCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.TeacherCourse" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <id column="class" property="stuClass" jdbcType="VARCHAR" />
+    <id column="cour_no" property="courNo" jdbcType="VARCHAR" />
+    <result column="cour_name" property="courName" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="term" property="term" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    teacher_id, class, cour_no, cour_name, year, term
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.TeacherCourseKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_course
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and class = #{stuClass,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.lianfang.entity.TeacherCourseKey" >
+    delete from teacher_course
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and class = #{stuClass,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lianfang.entity.TeacherCourse" >
+    insert into teacher_course (teacher_id, class, cour_no, 
+      cour_name, year, term)
+    values (#{teacherId,jdbcType=VARCHAR}, #{stuClass,jdbcType=VARCHAR}, #{courNo,jdbcType=VARCHAR}, 
+      #{courName,jdbcType=VARCHAR}, #{year,jdbcType=CHAR}, #{term,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lianfang.entity.TeacherCourse" >
+    insert into teacher_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="class != null" >
+        class,
+      </if>
+      <if test="courNo != null" >
+        cour_no,
+      </if>
+      <if test="courName != null" >
+        cour_name,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="term != null" >
+        term,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="class != null" >
+        #{stuClass,jdbcType=VARCHAR},
+      </if>
+      <if test="courNo != null" >
+        #{courNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courName != null" >
+        #{courName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="term != null" >
+        #{term,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.TeacherCourse" >
+    update teacher_course
+    <set >
+      <if test="courName != null" >
+        cour_name = #{courName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="term != null" >
+        term = #{term,jdbcType=CHAR},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and class = #{stuClass,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.TeacherCourse" >
+    update teacher_course
+    set cour_name = #{courName,jdbcType=VARCHAR},
+      year = #{year,jdbcType=CHAR},
+      term = #{term,jdbcType=CHAR}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+      and class = #{stuClass,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

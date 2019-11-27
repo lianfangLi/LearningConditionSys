@@ -1,13 +1,12 @@
-package com.example.lianfang.mapper;
+package com.example.lianfang.service;
 
 import com.example.lianfang.entity.Attending;
 import com.example.lianfang.entity.AttendingKey;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface AttendingMapper {
+
+public interface AttendingService {
     int deleteByPrimaryKey(AttendingKey key);
 
     int insert(Attending record);
@@ -20,12 +19,9 @@ public interface AttendingMapper {
 
     int updateByPrimaryKey(Attending record);
 
-    int updateAttendingSituation(@Param("list")List<Attending> list);
+    int updateAttendingSituation(@Param("list") List<Attending> list);
 
     List<Attending> checkByClass(Attending msg);
 
     int deleteByClass(Attending msg);
-
-
-
 }

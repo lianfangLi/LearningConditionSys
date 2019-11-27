@@ -40,4 +40,6 @@ public class UserServiceImpl implements UserService {
     public Integer deleteRecord(String id) {
         return userMapper.deleteRecord(id);
     }
+
+
 }

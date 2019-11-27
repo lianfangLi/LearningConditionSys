@@ -112,4 +112,25 @@
       and which_subject = #{whichSubject,jdbcType=VARCHAR}
       and which_time = #{whichTime,jdbcType=INTEGER}
   </update>
+
+  <update id="updateAttendingSituation" parameterType="java.util.List" >
+   <foreach collection="list" item="student" separator=",">
+     update attending set is_attend = #{student.isAttend}
+     where id = #{student.id,jdbcType=VARCHAR}
+     and which_subject = #{student.whichSubject,jdbcType=VARCHAR}
+     and which_time = #{student.whichTime,jdbcType=INTEGER}
+   </foreach>
+
+  </update>
+  <select id="checkByClass" parameterType="com.example.lianfang.entity.Attending" resultType="com.example.lianfang.entity.Attending">
+    select id,is_attend from attending where which_subject = #{whichSubject}
+    and which_time = #{whichTime}
+    and class_no = #{classNo}
+  </select>
+  <delete id="deleteByClass" parameterType="com.example.lianfang.entity.Attending">
+    delete from attending where which_subject = #{whichSubject}
+    and which_time = #{whichTime}
+    and class_no = #{classNo}
+  </delete>
+          
 </mapper>

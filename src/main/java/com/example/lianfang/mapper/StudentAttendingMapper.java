@@ -19,6 +19,14 @@ public interface StudentAttendingMapper {
                         @Param("isattend") String isattend,
                         @Param("classNo") String class_no
     );
+   /* int updateByClassNo(@Param("stuList") List<Student> stuList,
+                        @Param("year") String year,
+                        @Param("term") String term,
+                        @Param("subject") String sub,
+                        @Param("time") Integer time,
+                        @Param("isattend") String isattend,
+                        @Param("classNo") String class_no
+    );*/
     Attending selectByPrimaryKey();
     List<Attending> selectIsAttendingExist(Attending attending );
 }

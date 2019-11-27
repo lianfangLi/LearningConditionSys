@@ -63,13 +63,10 @@ public class StudentController {
         Map<String,String> map = SqlUtils.getMap();
         if(students == null || students.size() == 0){
             map.put("status","FAILURE");
-            map.put("reason","no students in class");
+            map.put("reason","no students in class or no such class!");
+            return JSON.toJSONString(map);
         }
         map.put("students",JSON.toJSONString(students));
         return JSON.toJSONString(map);
     }
-
-
-
-
 }

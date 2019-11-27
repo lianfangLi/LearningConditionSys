@@ -1,6 +1,7 @@
 package com.example.lianfang.Controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.lianfang.entity.User;
 import com.example.lianfang.generalUtils.SqlUtils;
 import com.example.lianfang.generalUtils.Status;
@@ -104,14 +105,30 @@ public class UserController {
         userService.insertRecord(user);
         return SqlUtils.success;
     }
-    @ApiOperation("用户信息修改接口")
+
+    @ApiOperation(value = "用户密码修改接口",notes = "注意传输格式")
     @PostMapping("/modifyUsers")
-    public String update(@RequestBody User user){
-        if(userService.updateRecord(user) != 0){
-            return SqlUtils.success;
+    public String update(@RequestParam  @ApiParam(name = "user",value =
+            "账号密码JSON串 例：{\"id\": \"1\", \"pass\": \"123\" }") String user,
+                         @RequestParam @ApiParam(name = "modifiedPass",value = "修改后的密码") String modifiedPass){
+          Map map = SqlUtils.getMap();
+          JSONObject JSONObject = JSON.parseObject(user);
+          User temp = new User();
+          temp.setId(JSONObject.getString("id"));
+          temp.setPass(JSONObject.getString("pass"));
+          temp = userService.login(temp);
+          if(temp == null){                        // 该用户账号，密码错误
+              map.put("status","FAILURE");
+              map.put("reason","wrong password!");
+              return JSON.toJSONString(map);
+          }
+          temp.setPass(modifiedPass);
+        if(userService.updateRecord(temp) == 0){
+            map.put("status","FAILURE");
+            map.put("reason","password modify failed!!");
         }
 
-            return SqlUtils.wrong;
+            return SqlUtils.success;
     }
 
 
