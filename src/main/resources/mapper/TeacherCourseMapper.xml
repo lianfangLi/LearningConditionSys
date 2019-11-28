@@ -3,34 +3,37 @@
 <mapper namespace="com.example.lianfang.mapper.TeacherCourseMapper" >
   <resultMap id="BaseResultMap" type="com.example.lianfang.entity.TeacherCourse" >
     <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
-    <id column="class" property="stuClass" jdbcType="VARCHAR" />
+    <id column="class_name" property="className" jdbcType="VARCHAR" />
     <id column="cour_no" property="courNo" jdbcType="VARCHAR" />
+    <result column="class_no" property="classNo" jdbcType="VARCHAR" />
     <result column="cour_name" property="courName" jdbcType="VARCHAR" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="term" property="term" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    teacher_id, class, cour_no, cour_name, year, term
+    teacher_id, class_name, cour_no, class_no, cour_name, year, term
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.TeacherCourseKey" >
     select 
     <include refid="Base_Column_List" />
     from teacher_course
     where teacher_id = #{teacherId,jdbcType=VARCHAR}
-      and class = #{stuClass,jdbcType=VARCHAR}
+      and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.example.lianfang.entity.TeacherCourseKey" >
     delete from teacher_course
     where teacher_id = #{teacherId,jdbcType=VARCHAR}
-      and class = #{stuClass,jdbcType=VARCHAR}
+      and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.lianfang.entity.TeacherCourse" >
-    insert into teacher_course (teacher_id, class, cour_no, 
-      cour_name, year, term)
-    values (#{teacherId,jdbcType=VARCHAR}, #{stuClass,jdbcType=VARCHAR}, #{courNo,jdbcType=VARCHAR}, 
-      #{courName,jdbcType=VARCHAR}, #{year,jdbcType=CHAR}, #{term,jdbcType=CHAR})
+    insert into teacher_course (teacher_id, class_name, cour_no, 
+      class_no, cour_name, year, 
+      term)
+    values (#{teacherId,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, #{courNo,jdbcType=VARCHAR}, 
+      #{classNo,jdbcType=VARCHAR}, #{courName,jdbcType=VARCHAR}, #{year,jdbcType=CHAR}, 
+      #{term,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.lianfang.entity.TeacherCourse" >
     insert into teacher_course
@@ -38,11 +41,14 @@
       <if test="teacherId != null" >
         teacher_id,
       </if>
-      <if test="class != null" >
-        class,
+      <if test="className != null" >
+        class_name,
       </if>
       <if test="courNo != null" >
         cour_no,
+      </if>
+      <if test="classNo != null" >
+        class_no,
       </if>
       <if test="courName != null" >
         cour_name,
@@ -58,11 +64,14 @@
       <if test="teacherId != null" >
         #{teacherId,jdbcType=VARCHAR},
       </if>
-      <if test="class != null" >
-        #{stuClass,jdbcType=VARCHAR},
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
       </if>
       <if test="courNo != null" >
         #{courNo,jdbcType=VARCHAR},
+      </if>
+      <if test="classNo != null" >
+        #{classNo,jdbcType=VARCHAR},
       </if>
       <if test="courName != null" >
         #{courName,jdbcType=VARCHAR},
@@ -78,6 +87,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.TeacherCourse" >
     update teacher_course
     <set >
+      <if test="classNo != null" >
+        class_no = #{classNo,jdbcType=VARCHAR},
+      </if>
       <if test="courName != null" >
         cour_name = #{courName,jdbcType=VARCHAR},
       </if>
@@ -89,16 +101,17 @@
       </if>
     </set>
     where teacher_id = #{teacherId,jdbcType=VARCHAR}
-      and class = #{stuClass,jdbcType=VARCHAR}
+      and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.TeacherCourse" >
     update teacher_course
-    set cour_name = #{courName,jdbcType=VARCHAR},
+    set class_no = #{classNo,jdbcType=VARCHAR},
+      cour_name = #{courName,jdbcType=VARCHAR},
       year = #{year,jdbcType=CHAR},
       term = #{term,jdbcType=CHAR}
     where teacher_id = #{teacherId,jdbcType=VARCHAR}
-      and class = #{stuClass,jdbcType=VARCHAR}
+      and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </update>
 </mapper>

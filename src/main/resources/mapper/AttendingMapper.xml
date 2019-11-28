@@ -132,5 +132,17 @@
     and which_time = #{whichTime}
     and class_no = #{classNo}
   </delete>
+
+    <select id="selectByStuNo" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.Attending" >
+    select
+    <include refid="Base_Column_List" />
+    from attending
+    where id = #{id,jdbcType=VARCHAR}
+    and which_subject = #{whichSubject,jdbcType=VARCHAR}
+    <if test="whichTime != null">
+        and which_time = #{whichTime,jdbcType=INTEGER}
+    </if>
+
+</select>
           
 </mapper>

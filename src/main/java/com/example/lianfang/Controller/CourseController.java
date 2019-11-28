@@ -2,11 +2,15 @@ package com.example.lianfang.Controller;
 
 import com.alibaba.fastjson.JSON;
 import com.example.lianfang.entity.Course;
+import com.example.lianfang.entity.TeacherCourse;
 import com.example.lianfang.generalUtils.SqlUtils;
 import com.example.lianfang.service.CourseService;
+import com.example.lianfang.service.TeacherCourseService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Api( description = "课程操作相关接口,教师调用  统一返回状态码")
 @RestController("/course")
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
     @Autowired
     CourseService courseService;
+    @Autowired
+    TeacherCourseService teacherCourseService;
 
     @ApiOperation(value = "添加课程信息",notes ="" )
     @PostMapping("/addcourse")
@@ -57,6 +63,27 @@ public class CourseController {
     public String selectCourse(@RequestParam String courNo){
         return JSON.toJSONString(courseService.selectByPrimaryKey(courNo));
     }
+
+    @ApiOperation(value = "教师添加班级课程信息", notes = "改接口 在教师关联班级时使用 ")
+
+    @PostMapping("/addRelatedBetweenTeaAndStu")
+    public String addRelatedBetweenTeaAndStu(@RequestBody TeacherCourse teacherCourse){
+        Map map = SqlUtils.getMap();
+        try{
+            if(teacherCourseService.selectByPrimaryKey(teacherCourse) != null){
+                map.put("status","FAILURE");
+                map.put("reason","record exist!");
+            }
+            teacherCourseService.insertSelective(teacherCourse);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return JSON.toJSONString(map);
+    }
+
 
 
 

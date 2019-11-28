@@ -25,6 +25,7 @@ public interface AttendingMapper {
     List<Attending> checkByClass(Attending msg);
 
     int deleteByClass(Attending msg);
+    List<Attending> selectByStuNo(Attending msg);
 
 
 

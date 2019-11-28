@@ -43,6 +43,11 @@ public class AttendingServiceImpl implements AttendingService {
     }
 
     @Override
+    public List<Attending> selectByStuNo(Attending msg) {
+        return attendingMapper.selectByStuNo(msg);
+    }
+
+    @Override
     public int deleteByClass(Attending msg) {
         return attendingMapper.deleteByClass(msg);
     }

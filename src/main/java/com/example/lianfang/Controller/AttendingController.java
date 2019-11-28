@@ -142,10 +142,33 @@ public class AttendingController {
             map.put("status","FAILURE");
             map.put("reason","System error!");
         }
-
         return JSON.toJSONString(map);
-
     }
+    @ApiOperation(value = "查看某学生 某门科目考勤情况 (同时支持课程全部考勤纪律 以及某次)",
+            notes = " model里面若查询某科目 只需要 classNo whichSubject字段 查询某次 添加一个whichTime 其他无视 若没有考勤记录 返回失败 否则 ")
+    @PostMapping("/inquireByStu")
+    public String inquireByStu(@RequestBody @ApiParam(name = "msg") Attending msg){
+        Map<String,String> map = SqlUtils.getMap();
+        try{
+            List<Attending> record= attendingService.selectByStuNo(msg);
+            if(record == null || record.size() == 0){
+                map.put("status","FAILURE");
+                map.put("reason","no such record!");
+
+            }
+            else {
+                map.put("record",JSON.toJSONString(record));
+            }
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            map.put("status","FAILURE");
+            map.put("reason","System error!");
+        }
+        return JSON.toJSONString(map);
+    }
+
 
 
 }
