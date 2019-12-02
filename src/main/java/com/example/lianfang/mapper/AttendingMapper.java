@@ -1,6 +1,7 @@
 package com.example.lianfang.mapper;
 
 import com.example.lianfang.entity.Attending;
+import com.example.lianfang.entity.AttendingExtends;
 import com.example.lianfang.entity.AttendingKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,8 +26,12 @@ public interface AttendingMapper {
     List<Attending> checkByClass(Attending msg);
 
     int deleteByClass(Attending msg);
-    List<Attending> selectByStuNo(Attending msg);
 
+    List<Attending> selectByClassAndTimes(Attending msg);
+
+    List<Attending> selectBystuYearAndTerm(Attending msg);
+
+    List<AttendingExtends> selectBystuYearAndTermToGetTimes(Attending msg);
 
 
 }

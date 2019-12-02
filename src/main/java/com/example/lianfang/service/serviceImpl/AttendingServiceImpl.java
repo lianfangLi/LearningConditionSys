@@ -1,6 +1,7 @@
 package com.example.lianfang.service.serviceImpl;
 
 import com.example.lianfang.entity.Attending;
+import com.example.lianfang.entity.AttendingExtends;
 import com.example.lianfang.entity.AttendingKey;
 import com.example.lianfang.mapper.AttendingMapper;
 import com.example.lianfang.service.AttendingService;
@@ -43,8 +44,18 @@ public class AttendingServiceImpl implements AttendingService {
     }
 
     @Override
-    public List<Attending> selectByStuNo(Attending msg) {
-        return attendingMapper.selectByStuNo(msg);
+    public List<Attending> selectBystuYearAndTerm(Attending msg) {
+        return attendingMapper.selectBystuYearAndTerm(msg);
+    }
+
+    @Override
+    public List<AttendingExtends> selectBystuYearAndTermToGetTimes(Attending msg) {
+        return attendingMapper.selectBystuYearAndTermToGetTimes(msg);
+    }
+
+    @Override
+    public List<Attending> selectByClassAndTimes(Attending msg) {
+        return attendingMapper.selectByClassAndTimes(msg);
     }
 
     @Override

@@ -114,4 +114,5 @@
       and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </update>
+
 </mapper>

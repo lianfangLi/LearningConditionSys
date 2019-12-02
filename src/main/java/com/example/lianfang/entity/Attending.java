@@ -11,8 +11,18 @@ public class Attending extends AttendingKey {
     private String whichYear;
     @ApiModelProperty(name ="isAttend",example = "1" )
     private String isAttend;
-    @ApiModelProperty(name = "classNo",example = "12")
+    @ApiModelProperty(name = "classNo",example = "1")
     private String classNo;
+
+    private String sdName;
+
+    public String getSdName() {
+        return sdName;
+    }
+
+    public void setSdName(String sdName) {
+        this.sdName = sdName;
+    }
 
     public String getClassNo() {
         return classNo;

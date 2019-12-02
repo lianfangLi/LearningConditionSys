@@ -5,9 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
 public class AttendingKey {
-    @ApiModelProperty(name ="id",example = "16111" )
+    @ApiModelProperty(name ="id",example = "17111205002" )
     private String id;
-    @ApiModelProperty(name ="whichSubject",example = "高等数学" )
+    @ApiModelProperty(name ="whichSubject",example = "17111" )
     private String whichSubject;
     @ApiModelProperty(name ="whichTime",example = "1" )
     private Integer whichTime;

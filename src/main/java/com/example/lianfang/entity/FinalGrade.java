@@ -1,24 +1,37 @@
 package com.example.lianfang.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class FinalGrade extends FinalGradeKey {
-    private String semester;
-
+    @ApiModelProperty(name = "year",example = "第一学年")
+    private String year;
+    @ApiModelProperty(name = "term",example = "第一学期")
+    private String term;
+    @ApiModelProperty(name = "checkClassAttendance",example = "100")
     private Float checkClassAttendance;
-
+    @ApiModelProperty(name = "checkHomeaworkAttendance",example = "100")
     private Float checkHomeaworkAttendance;
-
+    @ApiModelProperty(name = "midExam",example = "100")
     private Float midExam;
-
+    @ApiModelProperty(name = "lastExam",example = "100")
     private Float lastExam;
-
+    @ApiModelProperty(name = "grades",example = "100")
     private Float grades;
 
-    public String getSemester() {
-        return semester;
+    public String getYear() {
+        return year;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester == null ? null : semester.trim();
+    public void setYear(String year) {
+        this.year = year == null ? null : year.trim();
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term == null ? null : term.trim();
     }
 
     public Float getCheckClassAttendance() {

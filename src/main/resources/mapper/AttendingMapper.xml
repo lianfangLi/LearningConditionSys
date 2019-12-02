@@ -133,16 +133,59 @@
     and class_no = #{classNo}
   </delete>
 
-    <select id="selectByStuNo" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.Attending" >
+    <select id="selectByClassAndTimes" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.Attending" >
     select
-    <include refid="Base_Column_List" />
-    from attending
-    where id = #{id,jdbcType=VARCHAR}
-    and which_subject = #{whichSubject,jdbcType=VARCHAR}
-    <if test="whichTime != null">
+    a.id,sd_name,which_subject,is_attend
+    from (
+        (
+    select  id,which_subject,is_attend from
+      attending
+      where which_subject = #{whichSubject,jdbcType=VARCHAR}
+      <if test="whichTime != null">
         and which_time = #{whichTime,jdbcType=INTEGER}
-    </if>
+      </if>
+      <if test="classNo != null">
+        and class_no = #{classNo,jdbcType=INTEGER}
+      </if>
+        ) as a
+    ) join student on a.id = student.id
+
 
 </select>
+
+  <select id="selectBystuYearAndTerm" resultType="com.example.lianfang.entity.Attending" parameterType="com.example.lianfang.entity.Attending">
+    select which_subject,which_time,is_attend
+    from attending
+    where id = #{id}
+    <if test="whichSubject != null">
+      and which_subject = #{whichSubject}
+    </if>
+    <if test="whichTerm != null">
+      and which_term = #{whichTerm}
+    </if>
+    <if test="whichYear != null">
+      and which_year = #{whichYear}
+    </if>
+
+  </select>
+
+  <select id="selectBystuYearAndTermToGetTimes"
+          resultType="com.example.lianfang.entity.AttendingExtends"
+          parameterType="com.example.lianfang.entity.Attending">
+    SELECT cour_name,which_subject,is_attend,is_attend_result FROM course  JOIN
+    (
+        (SELECT  which_subject,is_attend,count(is_attend) as is_attend_result FROM `attending` where id =  #{id}
+            <if test="whichTerm != null">
+                 and which_term = #{whichTerm}
+             </if>
+            <if test="whichYear != null">
+                 and which_year = #{whichYear}
+            </if>
+             GROUP BY which_subject,is_attend
+        )
+      as a
+    ) on cour_no = which_subject
+
+  </select>
           
 </mapper>

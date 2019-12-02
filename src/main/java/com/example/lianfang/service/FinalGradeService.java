@@ -1,13 +1,12 @@
-package com.example.lianfang.mapper;
+package com.example.lianfang.service;
 
 import com.example.lianfang.entity.FinalGrade;
 import com.example.lianfang.entity.FinalGradeKey;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface FinalGradeMapper {
+public interface FinalGradeService {
+
     int deleteByPrimaryKey(FinalGradeKey key);
 
     int insert(FinalGrade record);
