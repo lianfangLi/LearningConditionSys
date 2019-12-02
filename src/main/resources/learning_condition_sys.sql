@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 27/11/2019 22:34:55
+ Date: 02/12/2019 18:57:11
 */
 
 SET NAMES utf8mb4;
@@ -35,10 +35,24 @@ CREATE TABLE `attending`  (
 -- ----------------------------
 -- Records of attending
 -- ----------------------------
-INSERT INTO `attending` VALUES ('17111205000', '高等数学', 1, '第一学期', '第一学年', '2', '0');
-INSERT INTO `attending` VALUES ('17111205001', '高等数学', 1, '第一学期', '第一学年', '2', '1');
-INSERT INTO `attending` VALUES ('17111205002', '高等数学', 1, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '高等数学', 1, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 1, '第一学期', '第一学年', '1', '0');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 2, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 3, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 4, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 5, '第一学期', '第一学年', '1', '0');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 6, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17112', 1, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17112', 2, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17112', 3, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 1, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 2, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 3, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 4, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 5, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 6, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17112', 1, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17112', 2, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17112', 3, '第一学期', '第一学年', '1', '1');
 
 -- ----------------------------
 -- Table structure for class
@@ -76,8 +90,8 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '高等数学', 3.0000, 64);
-INSERT INTO `course` VALUES ('2', '概率论', 1.0000, 64);
+INSERT INTO `course` VALUES ('17111', '高等数学', 3.0000, 64);
+INSERT INTO `course` VALUES ('17112', '概率论', 1.0000, 64);
 INSERT INTO `course` VALUES ('3', '线性代数', 2.0000, 64);
 INSERT INTO `course` VALUES ('4', '操作系统', 4.0000, 1);
 INSERT INTO `course` VALUES ('6567', '高等数学', 2.0000, 1);
@@ -106,17 +120,22 @@ INSERT INTO `department` VALUES ('3', '物理', 'jack');
 DROP TABLE IF EXISTS `final_grade`;
 CREATE TABLE `final_grade`  (
   `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学生学号',
+  `class_no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学生班级号',
   `cour_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程号',
-  `teacher_id` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '教师号',
-  `year` enum('第一学年','第二学年','第三学年','第四学年') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '第一学年',
-  `semester` enum('第一学期','第二学期') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '第一学期',
-  `check_class_attendance` float(5, 4) NULL DEFAULT NULL COMMENT '考勤成绩',
-  `check_homeawork_attendance` float(5, 5) NULL DEFAULT NULL COMMENT '作业成绩',
-  `mid_exam` float(3, 2) NULL DEFAULT NULL,
-  `last_exam` float(3, 2) NULL DEFAULT NULL,
-  `grades` float(4, 4) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`, `cour_no`, `teacher_id`) USING BTREE
+  `year` enum('第一学年','第二学年','第三学年','第四学年') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '第一学年',
+  `term` enum('第一学期','第二学期') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '第一学期',
+  `check_class_attendance` float(5, 3) NULL DEFAULT NULL COMMENT '考勤成绩',
+  `check_homeawork_attendance` float(5, 3) NULL DEFAULT NULL COMMENT '作业成绩',
+  `mid_exam` float(5, 3) NULL DEFAULT NULL,
+  `last_exam` float(5, 3) NULL DEFAULT NULL COMMENT '期末成绩',
+  `grades` float(5, 3) NULL DEFAULT NULL COMMENT '最终成绩',
+  PRIMARY KEY (`id`, `class_no`, `cour_no`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of final_grade
+-- ----------------------------
+INSERT INTO `final_grade` VALUES ('17111205002', '1', '2', '第一学年', '第一学期', NULL, NULL, NULL, 45.544, NULL);
 
 -- ----------------------------
 -- Table structure for homework
@@ -155,7 +174,7 @@ CREATE TABLE `student`  (
 -- ----------------------------
 INSERT INTO `student` VALUES ('17111205000', 'Mike', '男', '2019-11-18', 19, '16688882222', '123@163.com', 'Holy!', '3');
 INSERT INTO `student` VALUES ('17111205001', 'Jack', '男', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '2');
-INSERT INTO `student` VALUES ('17111205002', 'Ricky', '男', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '1');
+INSERT INTO `student` VALUES ('17111205002', 'Ricky', '男', '2019-11-18', 19, '16688882', '123@163.com', 'FFFFF!', '12');
 INSERT INTO `student` VALUES ('17111205003', 'Michal', '女', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '1');
 
 -- ----------------------------
@@ -188,13 +207,19 @@ INSERT INTO `teacher` VALUES ('17112', '李', '男', '2019-12-22', 56, '13888885
 DROP TABLE IF EXISTS `teacher_course`;
 CREATE TABLE `teacher_course`  (
   `teacher_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `class` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `class_no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `class_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cour_no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cour_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `year` enum('第一学年','第二学年','第三学年','第四学年','') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '第一学年',
   `term` enum('第一学期','第二学期') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`teacher_id`, `class`, `cour_no`) USING BTREE
+  PRIMARY KEY (`teacher_id`, `class_name`, `cour_no`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of teacher_course
+-- ----------------------------
+INSERT INTO `teacher_course` VALUES ('17111', '2', '软件工程', '1', '高等数学', '第一学年', '第一学期');
 
 -- ----------------------------
 -- Table structure for user
@@ -210,7 +235,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123456', 'stu');
+INSERT INTO `user` VALUES ('1', '1234', 'stu');
 INSERT INTO `user` VALUES ('16111', 'thisismypass', 'tea');
 
 SET FOREIGN_KEY_CHECKS = 1;
