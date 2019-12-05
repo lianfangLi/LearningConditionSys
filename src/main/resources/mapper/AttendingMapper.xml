@@ -135,10 +135,10 @@
 
     <select id="selectByClassAndTimes" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.Attending" >
     select
-    a.id,sd_name,which_subject,is_attend
+    a.id,sd_name,which_subject,is_attend,which_time
     from (
         (
-    select  id,which_subject,is_attend from
+    select  id,which_subject,is_attend,which_time from
       attending
       where which_subject = #{whichSubject,jdbcType=VARCHAR}
       <if test="whichTime != null">

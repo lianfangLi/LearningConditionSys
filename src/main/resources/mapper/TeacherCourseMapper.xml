@@ -114,5 +114,34 @@
       and class_name = #{className,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </update>
+  <select id="inquireClassAndCourByTeaIdAndYearAndTerm" parameterType="com.example.lianfang.entity.TeacherCourse"
+          resultType="com.example.lianfang.entity.TeacherCourse">
+    select DISTINCT(class_no) class_no,class_name,cour_no,cour_name from teacher_course
+      where teacher_id = #{teacherId}
+    <if test="year != null" >
+      and year = #{year}
+    </if>
+    <if test="term != null" >
+       and term = #{term}
+    </if>
+  </select>
+
+    <select id="inqueireCourByclass" parameterType="com.example.lianfang.entity.TeacherCourse"
+            resultType="com.example.lianfang.entity.TeacherCourseExtends">
+        select  a.teacher_id,teacher_name,cour_no,cour_name from teacher join
+        (
+        (select  teacher_id,cour_no,cour_name from teacher_course
+        where class_no = #{classNo}
+        <if test="year != null" >
+            and year = #{year}
+        </if>
+        <if test="term != null" >
+            and term = #{term}
+        </if>
+        )
+        as a
+        )
+        on a.teacher_id =teacher.teacher_id
+    </select>
 
 </mapper>

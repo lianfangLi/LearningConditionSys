@@ -225,7 +225,6 @@ public class AttendingController {
                 //   map.put("recordDetail",JSON.toJSONString(list));
                 map.put("recordGeneral",JSON.toJSONString(list1));
             }
-
         }
         catch(Exception e){
             e.printStackTrace();

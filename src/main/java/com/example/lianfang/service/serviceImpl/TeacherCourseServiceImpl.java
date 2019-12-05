@@ -1,11 +1,14 @@
 package com.example.lianfang.service.serviceImpl;
 
 import com.example.lianfang.entity.TeacherCourse;
+import com.example.lianfang.entity.TeacherCourseExtends;
 import com.example.lianfang.entity.TeacherCourseKey;
 import com.example.lianfang.mapper.TeacherCourseMapper;
 import com.example.lianfang.service.TeacherCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeacherCourseServiceImpl implements TeacherCourseService {
@@ -25,6 +28,16 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
     @Override
     public int insertSelective(TeacherCourse record) {
         return teacherCourseMapper.insertSelective(record);
+    }
+
+    @Override
+    public List<TeacherCourseExtends> inqueireCourByclass(TeacherCourse teacherCourse) {
+        return teacherCourseMapper.inqueireCourByclass(teacherCourse);
+    }
+
+    @Override
+    public List<TeacherCourse> inquireClassAndCourByTeaIdAndYearAndTerm(TeacherCourse teacherCourse) {
+        return teacherCourseMapper.inquireClassAndCourByTeaIdAndYearAndTerm(teacherCourse);
     }
 
     @Override
