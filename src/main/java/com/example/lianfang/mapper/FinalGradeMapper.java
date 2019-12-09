@@ -23,4 +23,10 @@ public interface FinalGradeMapper {
     List<FinalGrade> checkIsClassRecordExists(FinalGrade record);
 
     int deleteRecordByClassAndCour(FinalGrade record);
+
+    List<FinalGrade> inquireStudentsGradesByClassOrCourNo(FinalGrade record);
+
+
+
+    List<FinalGrade> singleStudentGradeInquire(FinalGrade record);
 }

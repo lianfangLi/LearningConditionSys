@@ -2,6 +2,7 @@ package com.example.lianfang.service;
 
 import com.example.lianfang.entity.FinalGrade;
 import com.example.lianfang.entity.FinalGradeKey;
+import com.example.lianfang.mapper.FinalGradeMapper;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface FinalGradeService {
     List<FinalGrade> checkIsClassRecordExists(FinalGrade record);
 
     int deleteRecordByClassAndCour(FinalGrade record);
+
+    List<FinalGrade> inquireStudentsGradesByClassOrCourNo(FinalGrade record);
+
+    List<FinalGrade> singleStudentGradeInquire(FinalGrade record);
 }

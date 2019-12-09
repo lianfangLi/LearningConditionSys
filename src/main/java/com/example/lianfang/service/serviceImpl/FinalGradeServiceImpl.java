@@ -15,6 +15,18 @@ public class FinalGradeServiceImpl implements FinalGradeService {
     @Autowired
     FinalGradeMapper finalGradeMapper;
 
+
+    @Override
+    public List<FinalGrade> singleStudentGradeInquire(FinalGrade record) {
+        return finalGradeMapper.singleStudentGradeInquire(record);
+    }
+
+    @Override
+    public List<FinalGrade> inquireStudentsGradesByClassOrCourNo(FinalGrade record) {
+        return finalGradeMapper.inquireStudentsGradesByClassOrCourNo(record);
+    }
+
+
     @Override
     public List<FinalGrade> checkIsClassRecordExists(FinalGrade record) {
         return finalGradeMapper.checkIsClassRecordExists(record);

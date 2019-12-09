@@ -150,10 +150,44 @@
       and class_no = #{classNo,jdbcType=VARCHAR}
       and cour_no = #{courNo,jdbcType=VARCHAR}
   </update>
+
   <select id="checkIsClassRecordExists"  resultType="com.example.lianfang.entity.FinalGrade" parameterType="com.example.lianfang.entity.FinalGrade">
     select id from final_grade where class_no = #{classNo} and cour_no = #{courNo}
   </select>
+
   <delete id="deleteRecordByClassAndCour" parameterType="com.example.lianfang.entity.FinalGrade">
     delete from final_grade where class_no = #{classNo} and cour_no = #{courNo}
   </delete>
+
+  <select id="inquireStudentsGradesByClassOrCourNo"  resultType="com.example.lianfang.entity.FinalGrade" parameterType="com.example.lianfang.entity.FinalGrade">
+  select * from final_grade where
+  class_no = #{classNo}
+  <if test="courNo != null">
+    and cour_no = #{courNo}
+  </if>
+  <if test="year != null">
+    and year = #{year}
+  </if>
+  <if test="term != null">
+    and term = #{term}
+  </if>
+</select>
+
+  <select id="singleStudentGradeInquire"  resultType="com.example.lianfang.entity.FinalGrade" parameterType="com.example.lianfang.entity.FinalGrade">
+    select * from final_grade where
+    id = #{id}
+    <if test="courNo != null">
+      and cour_no = #{courNo}
+    </if>
+    <if test="year != null">
+      and year = #{year}
+    </if>
+    <if test="term != null">
+      and term = #{term}
+    </if>
+  </select>
+
+
+
+
 </mapper>
