@@ -16,7 +16,16 @@ public class User {
     private String pass;
     @ApiModelProperty(value="用户姓名",name="identity",example="stu")
     private String identity;
+    @ApiModelProperty(value="修改密码",name="modifiedPass",example="123123")
+    private String modifiedPass;
 
+    public String getModifiedPass() {
+        return modifiedPass;
+    }
+
+    public void setModifiedPass(String modifiedPass) {
+        this.modifiedPass = modifiedPass;
+    }
 
     public String getId() {
         return id;

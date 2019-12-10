@@ -34,8 +34,6 @@ public class UserController {
      * @param user
      * @return
      */
-
-
     @CrossOrigin
     @ApiOperation("用户登录接口")
     @PostMapping("/userLogin")
@@ -108,43 +106,33 @@ public class UserController {
 
     @ApiOperation(value = "用户密码修改接口",notes = "注意传输格式")
     @PostMapping("/modifyUsers")
-    public String update(@RequestParam  @ApiParam(name = "user",value =
-            "账号密码JSON串 例：{\"id\": \"1\", \"pass\": \"123\" }") String user,
-                         @RequestParam @ApiParam(name = "modifiedPass",value = "修改后的密码") String modifiedPass){
-          Map map = SqlUtils.getMap();
-          JSONObject JSONObject = JSON.parseObject(user);
+    public String update(@RequestBody @ApiParam(name = "modifiedUser") User modifiedUser){
+        Map map = SqlUtils.getMap();
+         /*
+          JSONObject JSONObject = JSON.parseObject(modifiedUser);
           User temp = new User();
           temp.setId(JSONObject.getString("id"));
-          temp.setPass(JSONObject.getString("pass"));
-          temp = userService.login(temp);
-          if(temp == null){                        // 该用户账号，密码错误
+          temp.setPass(JSONObject.getString("pass"));*/
+          User loginUser = userService.login(modifiedUser);
+          if(loginUser == null){                        // 该用户账号，密码错误
               map.put("status","FAILURE");
               map.put("reason","wrong password!");
               return JSON.toJSONString(map);
           }
-          temp.setPass(modifiedPass);
-        if(userService.updateRecord(temp) == 0){
+         modifiedUser.setPass(modifiedUser.getModifiedPass());
+
+        if(userService.updateRecord(modifiedUser) == 0){
             map.put("status","FAILURE");
-            map.put("reason","password modify failed!!");
+            map.put("reason","modify failed!!");
         }
 
-            return SqlUtils.success;
+            return JSON.toJSONString(map);
     }
-
-
-
-
     @ApiOperation(value = "查询用户角色接口",notes = "用户只能拥有一种角色 要么 老师 要么学生")
     @PostMapping("/getUserRole")
     public String getRole(@RequestParam  @ApiParam("用户id") String userId){
 
             return null;
     }
-
-
-
-
-
-
 
 }
