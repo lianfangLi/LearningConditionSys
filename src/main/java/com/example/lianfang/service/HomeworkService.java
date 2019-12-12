@@ -1,15 +1,13 @@
-package com.example.lianfang.mapper;
+package com.example.lianfang.service;
 
 import com.example.lianfang.entity.Homework;
 import com.example.lianfang.entity.HomeworkExtends;
-import com.example.lianfang.entity.Homework;
 import com.example.lianfang.entity.HomeworkKey;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface HomeworkMapper {
+
+public interface HomeworkService {
     int deleteByPrimaryKey(HomeworkKey key);
 
     int insert(Homework record);

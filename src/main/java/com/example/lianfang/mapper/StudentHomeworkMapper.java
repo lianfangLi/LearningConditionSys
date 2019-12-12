@@ -1,6 +1,6 @@
 package com.example.lianfang.mapper;
 
-import com.example.lianfang.entity.Attending;
+import com.example.lianfang.entity.Homework;
 import com.example.lianfang.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,8 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface StudentAttendingMapper {
-/*    int selecttByclassNo(@Param("classNo") String classNo,@Param("subject") String subject,@Param("time") String time);*/
+public interface StudentHomeworkMapper {
 
     int insertByClassNo(@Param("stuList") List<Student> stuList,
                         @Param("year") String year,
@@ -19,6 +18,6 @@ public interface StudentAttendingMapper {
                         @Param("isattend") String isattend,
                         @Param("classNo") String class_no
     );
-    Attending selectByPrimaryKey();
-    List<Attending> selectIsAttendingExist(Attending attending );
+
+    List<Homework> selectIsHomeworkExist(Homework attending );
 }

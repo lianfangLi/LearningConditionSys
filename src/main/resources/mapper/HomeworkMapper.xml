@@ -5,20 +5,22 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <id column="which_subject" property="whichSubject" jdbcType="VARCHAR" />
     <id column="which_time" property="whichTime" jdbcType="INTEGER" />
-    <result column="is_attend" property="isAttend" jdbcType="CHAR" />
     <result column="which_term" property="whichTerm" jdbcType="CHAR" />
     <result column="which_year" property="whichYear" jdbcType="CHAR" />
+    <result column="is_attend" property="isAttend" jdbcType="CHAR" />
+    <result column="class_no" property="classNo" jdbcType="CHAR" />
+
   </resultMap>
   <sql id="Base_Column_List" >
-    id, which_subject, which_time, is_attend, which_term, which_year
+    id, which_subject, which_time, which_term, which_year, is_attend, class_no
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.HomeworkKey" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from homework
     where id = #{id,jdbcType=VARCHAR}
-      and which_subject = #{whichSubject,jdbcType=VARCHAR}
-      and which_time = #{whichTime,jdbcType=INTEGER}
+    and which_subject = #{whichSubject,jdbcType=VARCHAR}
+    and which_time = #{whichTime,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.example.lianfang.entity.HomeworkKey" >
     delete from homework
@@ -28,10 +30,10 @@
   </delete>
   <insert id="insert" parameterType="com.example.lianfang.entity.Homework" >
     insert into homework (id, which_subject, which_time, 
-      is_attend, which_term, which_year
+      which_term, which_year, is_attend,class_no
       )
     values (#{id,jdbcType=VARCHAR}, #{whichSubject,jdbcType=VARCHAR}, #{whichTime,jdbcType=INTEGER}, 
-      #{isAttend,jdbcType=CHAR}, #{whichTerm,jdbcType=CHAR}, #{whichYear,jdbcType=CHAR}
+      #{whichTerm,jdbcType=CHAR}, #{whichYear,jdbcType=CHAR}, #{isAttend,jdbcType=CHAR}, #{classNo,jdbcType=CHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.lianfang.entity.Homework" >
@@ -46,14 +48,17 @@
       <if test="whichTime != null" >
         which_time,
       </if>
-      <if test="isAttend != null" >
-        is_attend,
-      </if>
       <if test="whichTerm != null" >
         which_term,
       </if>
       <if test="whichYear != null" >
         which_year,
+      </if>
+      <if test="isAttend != null" >
+        is_attend,
+      </if>
+      <if test="classNo != null" >
+        class_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -66,41 +71,124 @@
       <if test="whichTime != null" >
         #{whichTime,jdbcType=INTEGER},
       </if>
-      <if test="isAttend != null" >
-        #{isAttend,jdbcType=CHAR},
-      </if>
       <if test="whichTerm != null" >
         #{whichTerm,jdbcType=CHAR},
       </if>
       <if test="whichYear != null" >
         #{whichYear,jdbcType=CHAR},
       </if>
+      <if test="isAttend != null" >
+        #{isAttend,jdbcType=CHAR},
+      </if>
+      <if test="class_no != null" >
+        #{classNo,jdbcType=CHAR},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.Homework" >
     update homework
     <set >
-      <if test="isAttend != null" >
-        is_attend = #{isAttend,jdbcType=CHAR},
-      </if>
       <if test="whichTerm != null" >
         which_term = #{whichTerm,jdbcType=CHAR},
       </if>
       <if test="whichYear != null" >
         which_year = #{whichYear,jdbcType=CHAR},
       </if>
+      <if test="isAttend != null" >
+        is_attend = #{isAttend,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
-      and which_subject = #{whichSubject,jdbcType=VARCHAR}
-      and which_time = #{whichTime,jdbcType=INTEGER}
+    and which_subject = #{whichSubject,jdbcType=VARCHAR}
+    and which_time = #{whichTime,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.Homework" >
     update homework
-    set is_attend = #{isAttend,jdbcType=CHAR},
-      which_term = #{whichTerm,jdbcType=CHAR},
-      which_year = #{whichYear,jdbcType=CHAR}
+    set which_term = #{whichTerm,jdbcType=CHAR},
+      which_year = #{whichYear,jdbcType=CHAR},
+      is_attend = #{isAttend,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
       and which_subject = #{whichSubject,jdbcType=VARCHAR}
       and which_time = #{whichTime,jdbcType=INTEGER}
   </update>
+
+  <update id="updateHomeworkSituation" parameterType="java.util.List" >
+    <foreach collection="list" item="student" separator=",">
+      update homework set is_attend = #{student.isAttend}
+      where id = #{student.id,jdbcType=VARCHAR}
+      <if test="student.whichSubject != null">
+        and which_subject = #{student.whichSubject,jdbcType=VARCHAR}
+      </if>
+      <if test="student.whichTime != null">
+        and which_time = #{student.whichTime,jdbcType=INTEGER}
+      </if>
+    </foreach>
+  </update>
+  <select id="checkByClass" parameterType="com.example.lianfang.entity.Homework" resultType="com.example.lianfang.entity.Homework">
+    select id,is_attend from homework where which_subject = #{whichSubject}
+    and which_time = #{whichTime}
+    and class_no = #{classNo}
+  </select>
+  <delete id="deleteByClass" parameterType="com.example.lianfang.entity.Homework">
+    delete from homework where which_subject = #{whichSubject}
+    and which_time = #{whichTime}
+    and class_no = #{classNo}
+  </delete>
+
+  <select id="selectByClassAndTimes" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.Homework" >
+    select
+    a.id,sd_name,which_subject,is_attend,which_time
+    from (
+    (
+    select  id,which_subject,is_attend,which_time from
+    homework
+    where which_subject = #{whichSubject,jdbcType=VARCHAR}
+    <if test="whichTime != null">
+      and which_time = #{whichTime,jdbcType=INTEGER}
+    </if>
+    <if test="classNo != null">
+      and class_no = #{classNo,jdbcType=INTEGER}
+    </if>
+    ) as a
+    ) join student on a.id = student.id
+
+
+  </select>
+
+  <select id="selectBystuYearAndTerm" resultType="com.example.lianfang.entity.Homework" parameterType="com.example.lianfang.entity.Homework">
+    select which_subject,which_time,is_attend
+    from homework
+    where id = #{id}
+    <if test="whichSubject != null">
+      and which_subject = #{whichSubject}
+    </if>
+    <if test="whichTerm != null">
+      and which_term = #{whichTerm}
+    </if>
+    <if test="whichYear != null">
+      and which_year = #{whichYear}
+    </if>
+
+  </select>
+
+  <select id="selectBystuYearAndTermToGetTimes"
+          resultType="com.example.lianfang.entity.HomeworkExtends"
+          parameterType="com.example.lianfang.entity.Homework">
+    SELECT cour_name,which_subject,is_attend,is_attend_result FROM course  JOIN
+    (
+    (SELECT  which_subject,is_attend,count(is_attend) as is_attend_result FROM `homework` where id =  #{id}
+    <if test="whichTerm != null">
+      and which_term = #{whichTerm}
+    </if>
+    <if test="whichYear != null">
+      and which_year = #{whichYear}
+    </if>
+    GROUP BY which_subject,is_attend
+    )
+    as a
+    ) on cour_no = which_subject
+
+  </select>
+
 </mapper>
