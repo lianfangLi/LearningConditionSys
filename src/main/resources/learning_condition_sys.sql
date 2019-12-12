@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 09/12/2019 10:28:34
+ Date: 12/12/2019 11:38:15
 */
 
 SET NAMES utf8mb4;
@@ -37,14 +37,14 @@ CREATE TABLE `attending`  (
 -- ----------------------------
 INSERT INTO `attending` VALUES ('17111205002', '17111', 1, '第一学期', '第一学年', '1', '0');
 INSERT INTO `attending` VALUES ('17111205002', '17111', 2, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 3, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 3, '第一学期', '第一学年', '1', '0');
 INSERT INTO `attending` VALUES ('17111205002', '17111', 4, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205002', '17111', 5, '第一学期', '第一学年', '1', '0');
 INSERT INTO `attending` VALUES ('17111205002', '17111', 6, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205002', '17112', 1, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205002', '17112', 2, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205002', '17112', 3, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 1, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205003', '17111', 1, '第一学期', '第一学年', '1', '0');
 INSERT INTO `attending` VALUES ('17111205003', '17111', 2, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205003', '17111', 3, '第一学期', '第一学年', '1', '1');
 INSERT INTO `attending` VALUES ('17111205003', '17111', 4, '第一学期', '第一学年', '1', '1');
@@ -173,7 +173,7 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('17111205000', 'James', '男', '2019-11-18', 19, '16688882222', '123@163.com', 'Holy!', '12');
+INSERT INTO `student` VALUES ('17111205000', 'James', '男', '2019-11-18', 19, '16688882222', '123@163.com', 'oooooooh！', '12');
 INSERT INTO `student` VALUES ('17111205001', 'Jack', '男', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '2');
 INSERT INTO `student` VALUES ('17111205002', 'Ricky', '男', '2019-11-18', 19, '16688882', '123@163.com', 'FFFFF!', '12');
 INSERT INTO `student` VALUES ('17111205003', 'Michal', '女', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '1');
@@ -238,6 +238,7 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '1234', 'stu');
-INSERT INTO `user` VALUES ('16111', 'thisismypass', 'tea');
+INSERT INTO `user` VALUES ('16111', '123123', 'stu');
+INSERT INTO `user` VALUES ('17111205001', '123456', 'stu');
 
 SET FOREIGN_KEY_CHECKS = 1;

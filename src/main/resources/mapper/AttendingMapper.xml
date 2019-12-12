@@ -117,10 +117,13 @@
    <foreach collection="list" item="student" separator=",">
      update attending set is_attend = #{student.isAttend}
      where id = #{student.id,jdbcType=VARCHAR}
-     and which_subject = #{student.whichSubject,jdbcType=VARCHAR}
-     and which_time = #{student.whichTime,jdbcType=INTEGER}
+     <if test="student.whichSubject != null">
+       and which_subject = #{student.whichSubject,jdbcType=VARCHAR}
+     </if>
+    <if test="student.whichTime != null">
+      and which_time = #{student.whichTime,jdbcType=INTEGER}
+    </if>
    </foreach>
-
   </update>
   <select id="checkByClass" parameterType="com.example.lianfang.entity.Attending" resultType="com.example.lianfang.entity.Attending">
     select id,is_attend from attending where which_subject = #{whichSubject}

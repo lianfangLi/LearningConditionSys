@@ -26,7 +26,6 @@ public class UserController {
 
     @Autowired
     TeacherService teacherService;
-
     /**
      *
      *

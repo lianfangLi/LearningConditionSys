@@ -70,11 +70,11 @@ public class AttendingController {
         }
         return JSON.toJSONString(map);
     }
-    @ApiOperation(value = "修改某班学生考勤情况",
+   /* @ApiOperation(value = "修改某班学生考勤情况",
             notes = " 这个接口 可以同时用来修改学生某次考勤的情况 可以把考勤设置为到了，或者未到，具体使用 自己看")
     @PostMapping("/modifyByClass")
     public String modifyByClassNO(@RequestParam @ApiParam(name = "students",
-            value ="学生信息的JSON数组 例：{\"students\" : [{\"id\" : \"17111205000\", \"isAttend\" : \"0\"}]}" )
+            value ="学生信息的JSON数组 例：{\"students\" : [{\"id\" : \"17111205000\", \"isAttend\" : \"0\"}]" )
                                               String students,
                                   @RequestParam @ApiParam(name = "subject",value = "学科编号") String subject,
                                   @RequestParam @ApiParam(name ="whichTime",value = "那一次") String whichTime ){
@@ -98,7 +98,41 @@ public class AttendingController {
         }
         catch (Exception e){
             map.put("status","FAILURE");
+            map.put("reason","system error");
         }
+        return JSON.toJSONString(map);
+    }*/
+
+    @ApiOperation(value = "修改某班学生考勤情况",
+            notes = " 参数为JSON数组 每个对象有四个字段 id，isAttend,whichSubject,whichTime 必填 ")
+    @PostMapping("/modifyByClass")
+    public String modifyByClassNO(@RequestBody List<Attending> list ){
+      /*  JSONObject JSONObject = JSON.parseObject(students);
+        JSONArray jsonArray = (JSONArray)JSONObject.getJSONArray("students");
+        List<Attending> attendings = (List<Attending>) JSONArray.parseArray(jsonArray.toString(),Attending.class); // 获取并修改学生数组
+        Iterator<Attending> iter = attendings.iterator();
+        while(iter.hasNext()){
+            Attending temp = iter.next();
+            temp.setWhichSubject(subject);
+            temp.setWhichTime(Integer.parseInt(whichTime));
+        }*/
+        Map map = SqlUtils.getMap();
+        try{
+            int i = 0;
+            for (int j = 0; j <list.size() ; j++) {
+                i += attendingService.updateByPrimaryKeySelective(list.get(j));
+            }
+            if(i ==0){
+                map.put("status","FAILURE");
+                map.put("reason","check your class or times! ");
+            }
+            map.put("affected",String.valueOf(i));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            map.put("status","FAILURE");
+        }
+
         return JSON.toJSONString(map);
     }
     @ApiOperation(value = "查看某班所有学生某学科某次考勤情况",
@@ -233,9 +267,5 @@ public class AttendingController {
         }
         return JSON.toJSONString(map);
     }
-
-
-
-
 
 }
