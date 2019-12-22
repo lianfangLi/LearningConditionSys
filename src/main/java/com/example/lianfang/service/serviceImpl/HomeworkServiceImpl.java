@@ -66,7 +66,7 @@ public class HomeworkServiceImpl implements HomeworkService {
 
     @Override
     public List<Homework> selectBystuYearAndTerm(Homework msg) {
-        return selectBystuYearAndTerm(msg);
+        return homeworkMapper.selectBystuYearAndTerm(msg);
     }
 
     @Override
