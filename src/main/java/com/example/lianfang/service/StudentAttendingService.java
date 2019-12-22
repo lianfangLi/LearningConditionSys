@@ -10,4 +10,8 @@ public interface StudentAttendingService {
 
     int insertByClassNo(List<Student> stuList,  String year,  String term,  String sub,  Integer time, String isattend,String class_no);
     List<Attending> selectIsAttendingExist(Attending attending );
+
+    public void finalGradeModify(List<Attending> record);
+
+
 }

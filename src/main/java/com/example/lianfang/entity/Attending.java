@@ -13,7 +13,6 @@ public class Attending extends AttendingKey {
     private String isAttend;
     @ApiModelProperty(name = "classNo",example = "1")
     private String classNo;
-
     private String sdName;
 
     public String getSdName() {

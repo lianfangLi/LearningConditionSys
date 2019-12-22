@@ -12,8 +12,6 @@
             #{user.id},#{year},#{term},#{subject},#{time},#{isattend},#{classNo}
             )
         </foreach>
-
-
     </insert>
     <select id="selectIsHomeworkExist" resultType="com.example.lianfang.entity.Homework">
         select id from homework where which_subject = #{whichSubject}
@@ -21,6 +19,4 @@
           and class_no = #{classNo}
 
     </select>
-
-
 </mapper>

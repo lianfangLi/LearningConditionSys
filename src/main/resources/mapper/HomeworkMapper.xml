@@ -156,7 +156,7 @@
 
   </select>
 
-  <select id="selectBystuYearAndTerm" resultType="com.example.lianfang.entity.Homework" parameterType="com.example.lianfang.entity.Homework">
+  <!--<select id="selectBystuYearAndTerm" resultType="com.example.lianfang.entity.Homework" parameterType="com.example.lianfang.entity.Homework">
     select which_subject,which_time,is_attend
     from homework
     where id = #{id}
@@ -169,8 +169,7 @@
     <if test="whichYear != null">
       and which_year = #{whichYear}
     </if>
-
-  </select>
+  </select>-->
 
   <select id="selectBystuYearAndTermToGetTimes"
           resultType="com.example.lianfang.entity.HomeworkExtends"
@@ -191,4 +190,21 @@
 
   </select>
 
+  <select id="selectByStuIdAndYearAndTermAndSubjectToGetTimes"
+          resultType="com.example.lianfang.entity.HomeworkExtends"
+          parameterType="com.example.lianfang.entity.Homework">
+    SELECT  is_attend,count(is_attend) as is_attend_result FROM `homework`
+    where id =  #{id}
+    <if test="whichTerm != null">
+      and which_term = #{whichTerm}
+    </if>
+    <if test="whichYear != null">
+      and which_year = #{whichYear}
+    </if>
+    <if test = "whichSubject!= null">
+      and which_subject = #{whichSubject}
+    </if>
+    GROUP BY is_attend
+  </select>
 </mapper>
+

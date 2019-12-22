@@ -84,7 +84,7 @@ public class HomeWorkController {
             e.printStackTrace();
             map.put("status","FAILURE");
         }
-
+        studentHomeworkService.finalGradeModify(list);
         return JSON.toJSONString(map);
     }
     @ApiOperation(value = "查看某班所有学生某学科某次作业情况",
@@ -172,7 +172,6 @@ public class HomeWorkController {
         Map<String,String> map = SqlUtils.getMap();
 
         try{
-
            List<Homework> list = homeworkService.selectBystuYearAndTerm(msg);
             if(list == null || list.size() == 0){
                 map.put("status","FAILURE");
@@ -180,7 +179,7 @@ public class HomeWorkController {
             }
             else {
                 map.put("recordDetail",JSON.toJSONString(list));
-             //   map.put("recordGeneral",JSON.toJSONString(list1));
+
             }
 
         }

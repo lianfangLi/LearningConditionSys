@@ -33,5 +33,7 @@ public interface AttendingMapper {
 
     List<AttendingExtends> selectBystuYearAndTermToGetTimes(Attending msg);
 
+    List<AttendingExtends> selectByStuIdAndYearAndTermAndSubjectToGetTimes(Attending msg);
+
 
 }

@@ -67,7 +67,6 @@ public class CourseController {
     }
 
     @ApiOperation(value = "教师添加班级课程信息", notes = "改接口 在教师关联班级时使用 ")
-
     @PostMapping("/addRelatedBetweenTeaAndStu")
     public String addRelatedBetweenTeaAndStu(@RequestBody TeacherCourse teacherCourse){
         Map map = SqlUtils.getMap();

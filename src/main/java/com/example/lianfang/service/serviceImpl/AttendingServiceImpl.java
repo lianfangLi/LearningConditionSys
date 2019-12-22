@@ -13,6 +13,9 @@ import java.util.List;
 public class AttendingServiceImpl implements AttendingService {
     @Autowired
     AttendingMapper attendingMapper;
+
+//    @Autowired
+//    StudentAttendingServiceImpl studentAttendingServiceImpl;
     @Override
     public int deleteByPrimaryKey(AttendingKey key) {
         return attendingMapper.deleteByPrimaryKey(key);
@@ -57,7 +60,6 @@ public class AttendingServiceImpl implements AttendingService {
     public List<Attending> selectByClassAndTimes(Attending msg) {
         return attendingMapper.selectByClassAndTimes(msg);
     }
-
     @Override
     public int deleteByClass(Attending msg) {
         return attendingMapper.deleteByClass(msg);

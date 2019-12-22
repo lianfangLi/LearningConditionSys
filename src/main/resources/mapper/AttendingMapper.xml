@@ -190,5 +190,21 @@
     ) on cour_no = which_subject
 
   </select>
-          
+
+  <select id="selectByStuIdAndYearAndTermAndSubjectToGetTimes"
+          resultType="com.example.lianfang.entity.AttendingExtends"
+          parameterType="com.example.lianfang.entity.Attending">
+    SELECT  is_attend,count(is_attend) as is_attend_result FROM `attending`
+    where id =  #{id}
+    <if test="whichTerm != null">
+      and which_term = #{whichTerm}
+    </if>
+    <if test="whichYear != null">
+      and which_year = #{whichYear}
+    </if>
+    <if test = "whichSubject!= null">
+      and which_subject = #{whichSubject}
+    </if>
+    GROUP BY is_attend
+  </select>
 </mapper>

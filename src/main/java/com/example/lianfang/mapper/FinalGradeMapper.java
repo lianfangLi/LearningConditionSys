@@ -18,6 +18,8 @@ public interface FinalGradeMapper {
 
     int updateByPrimaryKeySelective(FinalGrade record);
 
+    int updateAttending(FinalGrade record);
+
     int updateByPrimaryKey(FinalGrade record);
 
     List<FinalGrade> checkIsClassRecordExists(FinalGrade record);
@@ -26,7 +28,11 @@ public interface FinalGradeMapper {
 
     List<FinalGrade> inquireStudentsGradesByClassOrCourNo(FinalGrade record);
 
-
-
     List<FinalGrade> singleStudentGradeInquire(FinalGrade record);
+
+    List<FinalGrade> selectByClassNoAndCourNo(FinalGrade record);
+
+    int updateHomework(FinalGrade record);
+
+
 }

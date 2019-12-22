@@ -12,15 +12,10 @@
           #{user.id},#{year},#{term},#{subject},#{time},#{isattend},#{classNo}
           )
       </foreach>
-
-
   </insert>
     <select id="selectIsAttendingExist" resultType="com.example.lianfang.entity.Attending">
         select id from attending where which_subject = #{whichSubject}
          and which_time = #{whichTime}
           and class_no = #{classNo}
-
     </select>
-
-
 </mapper>

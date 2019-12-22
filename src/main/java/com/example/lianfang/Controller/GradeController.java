@@ -72,7 +72,6 @@ public class GradeController {
             "返回值： 该学年该学生所有成绩的JSON串")
     @PostMapping("/singleStudentGradeInquire")
     public String singleStudentGradeInquire(@RequestBody @ApiParam(name = "",value = "") FinalGrade finalGrade){
-
         Map<String,String> map = SqlUtils.getMap();
         try{
             List<FinalGrade> list = finalGradeService.singleStudentGradeInquire(finalGrade);
@@ -89,16 +88,4 @@ public class GradeController {
         }
         return JSON.toJSONString(map);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

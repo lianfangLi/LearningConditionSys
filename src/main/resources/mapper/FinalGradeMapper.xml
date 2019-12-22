@@ -187,6 +187,44 @@
     </if>
   </select>
 
+  <select id="selectByClassNoAndCourNo" resultType="com.example.lianfang.entity.FinalGrade" parameterType="com.example.lianfang.entity.FinalGrade" >
+    select
+    id
+    from final_grade
+    where
+     class_no = #{classNo,jdbcType=VARCHAR}
+    and cour_no = #{courNo,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateAttending" parameterType="com.example.lianfang.entity.FinalGrade" >
+    update final_grade
+    <set >
+      <if test="checkClassAttendance != null" >
+        check_class_attendance = #{checkClassAttendance,jdbcType=REAL},
+      </if>
+      <if test="checkHomeaworkAttendance != null" >
+        check_homeawork_attendance = #{checkHomeaworkAttendance,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+    and cour_no = #{courNo,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateHomework" parameterType="com.example.lianfang.entity.FinalGrade" >
+    update final_grade
+    <set >
+      <if test="checkClassAttendance != null" >
+        check_class_attendance = #{checkClassAttendance,jdbcType=REAL},
+      </if>
+      <if test="checkHomeaworkAttendance != null" >
+        check_homeawork_attendance = #{checkHomeaworkAttendance,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+    and cour_no = #{courNo,jdbcType=VARCHAR}
+  </update>
+
+
 
 
 

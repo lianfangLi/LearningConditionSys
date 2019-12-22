@@ -1,9 +1,7 @@
 package com.example.lianfang.mapper;
 
+import com.example.lianfang.entity.*;
 import com.example.lianfang.entity.Homework;
-import com.example.lianfang.entity.HomeworkExtends;
-import com.example.lianfang.entity.Homework;
-import com.example.lianfang.entity.HomeworkKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,4 +31,6 @@ public interface HomeworkMapper {
     List<Homework> selectBystuYearAndTerm(Homework msg);
 
     List<HomeworkExtends> selectBystuYearAndTermToGetTimes(Homework msg);
+
+    List<HomeworkExtends> selectByStuIdAndYearAndTermAndSubjectToGetTimes(Homework msg);
 }

@@ -31,4 +31,7 @@ public interface AttendingService {
     List<Attending> selectBystuYearAndTerm(Attending msg);
 
     List<AttendingExtends> selectBystuYearAndTermToGetTimes(Attending msg);
+
+
+
 }

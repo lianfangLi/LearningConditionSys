@@ -31,7 +31,7 @@ public class StudentController {
     @PostMapping("/studentModify")
     public String modify(@RequestBody Student student){
 
-        if(/*studentService.selectByPrimaryKey(student.getId()) == null ||*/ studentService.updateByPrimaryKeySelective(student) == 0 ) return SqlUtils.wrong;
+        if(studentService.updateByPrimaryKeySelective(student) == 0 ) return SqlUtils.wrong;
         return SqlUtils.success;
 
     }
