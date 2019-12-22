@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 12/12/2019 11:38:15
+ Date: 22/12/2019 16:18:09
 */
 
 SET NAMES utf8mb4;
@@ -35,24 +35,8 @@ CREATE TABLE `attending`  (
 -- ----------------------------
 -- Records of attending
 -- ----------------------------
-INSERT INTO `attending` VALUES ('17111205002', '17111', 1, '第一学期', '第一学年', '1', '0');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 2, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 3, '第一学期', '第一学年', '1', '0');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 4, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 5, '第一学期', '第一学年', '1', '0');
-INSERT INTO `attending` VALUES ('17111205002', '17111', 6, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17112', 1, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17112', 2, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205002', '17112', 3, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 1, '第一学期', '第一学年', '1', '0');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 2, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 3, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 4, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 5, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17111', 6, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17112', 1, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17112', 2, '第一学期', '第一学年', '1', '1');
-INSERT INTO `attending` VALUES ('17111205003', '17112', 3, '第一学期', '第一学年', '1', '1');
+INSERT INTO `attending` VALUES ('17111205000', '17111', 1, '第一学期', '第一学年', '12', '1');
+INSERT INTO `attending` VALUES ('17111205002', '17111', 1, '第一学期', '第一学年', '12', '0');
 
 -- ----------------------------
 -- Table structure for class
@@ -72,7 +56,7 @@ CREATE TABLE `class`  (
 -- Records of class
 -- ----------------------------
 INSERT INTO `class` VALUES ('1', '物联网', '2017-09-01 08:00:00', 50, 17111205, 'Susan');
-INSERT INTO `class` VALUES ('24', '软件工程', '2017-09-01 08:00:00', 50, 17111205, 'Susan');
+INSERT INTO `class` VALUES ('12', '软件工程', '2017-09-01 08:00:00', 50, 17111205, 'Susan');
 INSERT INTO `class` VALUES ('3', '计算机', '2017-09-01 08:00:00', 50, 17111205, 'Susan');
 
 -- ----------------------------
@@ -135,8 +119,8 @@ CREATE TABLE `final_grade`  (
 -- ----------------------------
 -- Records of final_grade
 -- ----------------------------
-INSERT INTO `final_grade` VALUES ('17111205005', '1', '17111', '第一学年', '第一学期', 0.000, 0.000, 0.000, 10.000, 0.000);
-INSERT INTO `final_grade` VALUES ('17111205006', '1', '17111', '第一学年', '第一学期', 0.000, 0.000, 0.000, 100.000, 0.000);
+INSERT INTO `final_grade` VALUES ('17111205000', '12', '17111', '第一学年', '第一学期', 100.000, 100.000, 0.000, 0.000, 0.000);
+INSERT INTO `final_grade` VALUES ('17111205002', '12', '17111', '第一学年', '第一学期', 0.000, 66.667, 0.000, 0.000, 0.000);
 
 -- ----------------------------
 -- Table structure for homework
@@ -152,6 +136,16 @@ CREATE TABLE `homework`  (
   `is_attend` enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1',
   PRIMARY KEY (`id`, `which_subject`, `which_time`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of homework
+-- ----------------------------
+INSERT INTO `homework` VALUES ('17111205000', '17111', 1, '第一学期', '第一学年', '12', '1');
+INSERT INTO `homework` VALUES ('17111205000', '17111', 2, '第一学期', '第一学年', '12', '1');
+INSERT INTO `homework` VALUES ('17111205000', '17111', 3, '第一学期', '第一学年', '12', '1');
+INSERT INTO `homework` VALUES ('17111205002', '17111', 1, '第一学期', '第一学年', '12', '0');
+INSERT INTO `homework` VALUES ('17111205002', '17111', 2, '第一学期', '第一学年', '12', '1');
+INSERT INTO `homework` VALUES ('17111205002', '17111', 3, '第一学期', '第一学年', '12', '1');
 
 -- ----------------------------
 -- Table structure for student
@@ -173,7 +167,7 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('17111205000', 'James', '男', '2019-11-18', 19, '16688882222', '123@163.com', 'oooooooh！', '12');
+INSERT INTO `student` VALUES ('17111205000', 'James', '男', '2019-11-18', 19, '16688882222', '123@163.com', 'wow!', '12');
 INSERT INTO `student` VALUES ('17111205001', 'Jack', '男', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '2');
 INSERT INTO `student` VALUES ('17111205002', 'Ricky', '男', '2019-11-18', 19, '16688882', '123@163.com', 'FFFFF!', '12');
 INSERT INTO `student` VALUES ('17111205003', 'Michal', '女', '2019-11-18', 19, '1668882222', '123@163.com', 'Holy!', '1');
@@ -199,8 +193,8 @@ CREATE TABLE `teacher`  (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('17111', '马', '男', '2019-12-22', 56, '13888885555', 'whatever@163.com', 'what’s this？', '教授', 1);
-INSERT INTO `teacher` VALUES ('17112', '李', '男', '2019-12-22', 56, '13888885555', 'whatever@163.com', 'what’s this？', '教授', 1);
+INSERT INTO `teacher` VALUES ('17111', '高高高', '男', '2019-12-22', 56, '13888885555', 'whatever@163.com', 'oasdasdsadasdh!', '教授', 1);
+INSERT INTO `teacher` VALUES ('17112', '高', NULL, NULL, NULL, NULL, NULL, 'just have a try', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for teacher_course
